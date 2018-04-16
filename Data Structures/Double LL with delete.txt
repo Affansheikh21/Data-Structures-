@@ -1,0 +1,125 @@
+
+package dspractice2;
+import java.util.*;
+class Node<T extends Comparable<T>>{
+T data;
+Node next;
+Node prev;
+Node(){}
+Node(T data){
+this.data=data;
+next=null;
+prev=null;
+}
+}
+class List<T extends Comparable<T>>{
+Node<T> head;
+Node<T> tail;
+List(){
+head=null;
+tail=null;
+}
+
+void insertInorder(T data){
+Node n = new Node(data);
+Node <T>temp;
+    if (head==null) {
+        n.next=head;
+        head=n;
+        
+    }
+    else {
+    temp=head;
+    while(temp!=null && (data.compareTo(temp.data))>0){
+    temp=temp.next;
+    }
+        if (temp==head) {
+            n.next=head;
+            head.prev=n;
+            head=n;
+        }
+        if(temp==null){
+        tail.next=n;
+        n.prev=tail;
+        tail=n;
+        
+        }
+        else{
+        temp.prev.next=n;
+        n.prev=temp.prev;
+        temp.prev=n;
+        n.next=temp;
+        
+        
+        }
+    }
+}
+
+void Display(){
+Node<T> temp = head;
+while(temp!=null){
+    System.out.println(temp.data + " ");
+    temp=temp.next;
+
+}
+
+}
+
+boolean Find(T data){
+Node <T>temp= head;
+
+while(temp!=null){
+    if (temp.data==data) {
+        return true;
+       
+    }
+     temp=temp.next;
+     
+    
+}
+return false;
+}
+void Delete(T value){
+    if (Find(value)) {
+        Node <T> temp=head;
+        
+        while(temp!=null && temp.data!=value){
+            temp=temp.next;
+        }
+        if (temp==head) {
+            head=head.next;
+            
+        }
+        if (temp==null) {
+            tail=tail.prev;
+        }
+        else {
+            temp.prev.next=temp.next;
+            temp.next.prev=temp.prev;
+          
+        }
+        
+        
+    }
+}
+}
+public class DSPractice2 {
+
+    public static void main(String[] args) {
+    Scanner in = new Scanner(System.in);
+    List<Integer> a = new List<>();
+    a.insertInorder(8);
+    a.insertInorder(1);
+    a.insertInorder(2);
+    a.insertInorder(5);
+    a.insertInorder(7);
+    a.insertInorder(4);
+        System.out.println(a.Find(4));
+        System.out.println(a.head.data);
+     //  a.Delete(8);
+      //  a.Delete(5);
+      //  a.Display();
+  
+    }
+    
+}

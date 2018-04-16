@@ -1,0 +1,81 @@
+  
+package stack;
+import java.util.*;
+public class Stack<T extends Comparable<T>> {
+int top;
+int size;
+T arr[];
+Stack(){
+top=-1;
+ arr = (T[]) new Comparable[10];
+}
+Stack(int x){
+    size=x;
+top=-1;
+arr = (T[]) new Comparable[x];
+}
+
+void push(T data){
+    if (isEmpty()) {
+        top++;
+    arr[top] = data;   
+    }
+    else if (isFull()){
+System.out.println(" No Space available ");
+    }
+
+
+}
+void pop(){
+arr[top--] = null;
+
+
+}
+
+T peek(){
+return arr[top];
+}
+
+boolean isEmpty(){
+    if (top<size-1) {
+        return true;
+    }
+    else return false;
+}
+boolean isFull(){
+    if (top==size-1) {
+        return true;
+    }
+    else return false;
+
+}
+
+
+    
+    
+    
+    
+    public static void main(String[] args) {
+    Scanner in = new Scanner(System.in);
+  Stack<Integer> a = new Stack<>(10);
+  a.push(2);
+  a.push(3);
+  a.push(4);
+  a.push(5);
+  a.push(6);
+  a.push(7);
+  a.push(8);
+  a.push(9);
+  a.push(10);
+  a.push(11);
+  a.push(12);
+        System.out.println(a.isEmpty());
+        System.out.println(a.isFull());
+        System.out.println(a.peek());
+        a.pop();
+        a.pop();
+        System.out.println(a.peek());
+  
+    }
+    
+}

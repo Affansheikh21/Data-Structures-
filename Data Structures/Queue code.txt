@@ -1,0 +1,125 @@
+
+package queueprac;
+import java.util.*;
+class Queue<T extends Comparable<T>>{
+ T[] Q;
+ int F;
+
+ Queue(){
+ Q=(T[])new Comparable[10];
+ F=-1;
+ }
+
+ Queue(int size){
+ Q=(T[])new Object[size];
+ F=-1;
+ }
+
+public void Enqueue(T x){
+    if (isEmpty()) {
+        F++;
+        Q[F]= x;
+    }
+    else if(isFull()){
+        System.out.println(" List is Full;");
+    }
+    else {
+        F++;
+        Q[F]= x;
+        for (int i = 0; i < F; i++) {
+      if (Q[i].compareTo(Q[i+1])>0) {
+            T a= Q[i+1];
+            Q[i+1]=Q[i];
+            Q[i]=a;
+        } 
+        }
+    
+    }
+}
+public T Dequeue(){
+int r=0;
+    if (isEmpty()) {
+        return null;
+    }
+    else {
+T a = Q[0];
+        Q[0]=null;
+        
+    for (int i = 0; i < Q.length-1; i++) {
+         Q[i] = Q[i+1]; 
+        
+    }
+    return a;
+}
+}
+public boolean isEmpty(){
+    if (F==-1) {
+        return true;
+    }
+    else return false;
+}
+
+
+public boolean isFull(){
+    if (F==Q.length-1) {
+        return true;
+    }
+    else return false;}
+
+
+public String toString() {
+String s= "";
+    for (int i = 0; i < Q.length; i++) {
+        s= s + Q[i] + " ";
+    }
+    return s;
+}
+
+public void Sort(){
+    for (int i = 0; i < Q.length-1; i++) {
+        if (Q[i].compareTo(Q[i+1])>0) {
+            T a= Q[i+1];
+            Q[i+1]=Q[i];
+            Q[i]=a;
+        }
+    }
+
+}
+        
+
+
+
+
+
+
+
+}//
+
+
+public class QueuePrac {
+   public static void main(String[] args) {
+   Scanner in = new Scanner(System.in);
+    Queue<Integer>  a = new Queue<>();
+       
+    a.Enqueue(2);
+    a.Enqueue(5);
+    a.Enqueue(1);
+    a.Enqueue(6);
+    a.Enqueue(4);
+    a.Enqueue(8); 
+    a.Enqueue(8); 
+    a.Enqueue(8); 
+    a.Enqueue(8); 
+    a.Enqueue(8);
+   
+    //System.out.println(a.isEmpty());
+        //System.out.println(a.isFull());
+        
+        System.out.println(a.Dequeue());
+        System.out.println(a.Dequeue());
+      
+       System.out.println(a.toString());
+      
+            
+    }    
+}
